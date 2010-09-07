@@ -1,10 +1,4 @@
-puts File.dirname(__FILE__).inspect
-
-if yes?("Are you using templates over HTTP?", Thor::Shell::Color::YELLOW)
-  @template_path = "http://github.com/perfectline/template-bucket/raw/master"
-else
-  @template_path = File.dirname(__FILE__)
-end
+@template_path = File.dirname(__FILE__).inspect
 
 apply "#{@template_path}/cleanup.rb"
 apply "#{@template_path}/database.rb"
