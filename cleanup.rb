@@ -1,5 +1,5 @@
-run 'rm public/index.html'
-run 'rm public/images/rails.png'
-run 'rm public/favicon.ico'
-run 'rm README'
-run 'rm -rf doc/'
+remove_file "README"
+remove_file "doc/"
+remove_file "public/index.html"
+remove_file "public/favicon.ico"
+remove_file "public/images/rails.png"
