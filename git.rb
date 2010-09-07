@@ -19,15 +19,16 @@ if yes?("Use Git?", Thor::Shell::Color::YELLOW)
 
   if yes?("Initialize remote repository?", Thor::Shell::Color::YELLOW)
 
-    say("Choose repository location:",        Thor::Shell::Color::YELLOW)
-    say("\t[1] http://www.github.com",          Thor::Shell::Color::YELLOW)
-    say("\t[2] http://svn.perfectline.ee",      Thor::Shell::Color::YELLOW)
-    say("\t[3] http://git.code.perfectline.ee",  Thor::Shell::Color::YELLOW)
+    say("Choose repository location:", Thor::Shell::Color::YELLOW)
+    say("\t[1] http://www.github.com/perfectline")
+    say("\t[2] http://svn.perfectline.ee")
+    say("\t[3] http://git.code.perfectline.ee")
+    say("\t[4] other repository")
 
     question    = lambda { ask("Enter number:", Thor::Shell::Color::YELLOW) }
     repository  = question.call
 
-    while !(1..3).include?(repository.to_i) do
+    while !(1..4).include?(repository.to_i) do
       say("Incorrect option", Thor::Shell::Color::RED)
       repository = question.call
     end
@@ -39,6 +40,8 @@ if yes?("Use Git?", Thor::Shell::Color::YELLOW)
         git :remote => "add origin ssh://svn.perfectline.ee/home/dev/git/#{app_name}.git"
       when 3
         git :remote => "add origin ssh://git.code.perfectline.ee/#{app_name}.git"
+      when 4
+        git :remote => "add origin #{ask("Enter Git repository URI:", Thor::Shell::Color::YELLOW)}"
     end
 
   end
