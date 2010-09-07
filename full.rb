@@ -1,4 +1,6 @@
-@template_path = File.dirname(__FILE__).inspect
+@template_path = File.dirname(__FILE__)
+
+puts @template_path.inspect
 
 apply "#{@template_path}/cleanup.rb"
 apply "#{@template_path}/database.rb"
