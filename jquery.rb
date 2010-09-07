@@ -13,15 +13,18 @@ if yes?("Use jQuery as javascript library?", Thor::Shell::Color::YELLOW)
 
     inside "jquery" do
       run "unzip jquery.metadata.zip -d jquery-metadata"
-      copy_file "jquery-metadata/jquery.metadata.2.1/jquery.metadata.js", "jquery.metadata.js"
+      
+      create_file "jquery.metadata.js" do
+        File.binread("jquery-metadata/jquery.metadata.2.1/jquery.metadata.js")
+      end
+
       remove_file 'jquery.metadata.zip'
       remove_file 'jquery-metadata'
     end
   end
 
-  initializer "jquery.rb" do
-    "ActionView::Helpers::AssetTagHelper.register_javascript_expansion :jquery => ['jquery/jquery.min', 'jquery/jquery.metadata', 'rails']" +
-    "ActionView::Helpers::AssetTagHelper.javascript_expansions[:defaults] = ['jquery/jquery.min', 'jquery/jquery.metadata', 'rails']"
+  application do
+    "  config.action_view.javascript_expansions[:defaults] = %w(jquery/jquery.min jquery/jquery.metadata rails)"
   end
 
 end

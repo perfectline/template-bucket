@@ -30,3 +30,6 @@ unless Gem.available?("pg")
 else
   say("Found #{gem_for_database}, skipping installation", Thor::Shell::Color::CYAN)
 end
+
+# TODO: mongoid support
+# TODO: DataMapper support

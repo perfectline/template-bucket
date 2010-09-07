@@ -2,7 +2,8 @@
 
 apply "#{@template_path}/cleanup.rb"
 apply "#{@template_path}/database.rb"
+apply "#{@template_path}/cucumber.rb"
 apply "#{@template_path}/rspec.rb"
-#apply "#{@template_path}/cucumber"
 apply "#{@template_path}/jquery.rb"
+apply "#{@template_path}/capistrano.rb"
 apply "#{@template_path}/git.rb"

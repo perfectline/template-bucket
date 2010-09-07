@@ -16,6 +16,8 @@ if yes?("Use RSpec testing framework?", Thor::Shell::Color::YELLOW)
     end
 
     generate "rspec:install"
+
+    # TODO: inject config.generators statement for rspec and factory_girl
   end
 
   if yes?("Use Factory Girl instead of fixtures?", Thor::Shell::Color::YELLOW)
@@ -29,4 +31,5 @@ if yes?("Use RSpec testing framework?", Thor::Shell::Color::YELLOW)
   if yes?("Use Shoulda macros?", Thor::Shell::Color::YELLOW)
     gem 'shoulda', :group => :test
   end
+
 end
