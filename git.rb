@@ -1,6 +1,6 @@
 if yes?("Use Git?", :yellow)
 
-  get "#{File.dirname(__FILE__)}/resources/.gitignore", ".gitignore"
+  get "#{File.dirname(__FILE__)}/resources/.gitignore", ".gitignore", :force => true
 
   git :init
   git :add => "."
