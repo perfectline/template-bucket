@@ -1,6 +1,4 @@
-create_file "public/stylesheets/reset.css" do
-  File.binread("#{File.dirname(__FILE__)}/resources/reset.css")
-end
+get "#{File.dirname(__FILE__)}/resources/reset.css", "public/stylesheets/reset.css"
 
 inside "app/views/layouts" do
   remove_file "application.html.erb"
