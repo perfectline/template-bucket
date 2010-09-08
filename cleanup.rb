@@ -3,7 +3,6 @@ remove_file "doc/"
 remove_file "public/index.html"
 remove_file "public/favicon.ico"
 remove_file "public/images/rails.png"
-remove_file ".gitignore"
 
 # cleanup gemfile, by removing all commented lines
 gsub_file "Gemfile", /#.*\n/, "\n"
