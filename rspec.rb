@@ -1,35 +1,56 @@
-if yes?("Use RSpec testing framework?", Thor::Shell::Color::YELLOW)
+if yes?("Install rspec and rspec-rails?", :yellow)
+
+  @use_rspec = true
 
   remove_file "test/"
 
+  inject_into_file "config/application.rb", :after => "config.generators do |generator|\n" do
+    (" " * 6) + "generator.test_framework :rspec, :views => false\n"
+  end
+
   gem 'rspec',        '>= 2.0.0.beta.20', :group => :test
   gem 'rspec-rails',  '>= 2.0.0.beta.20', :group => :test
+  gem 'database_cleaner',                 :group => :test
 
-  if yes?("Generate RSpec config?", Thor::Shell::Color::YELLOW)
+  unless Gem.available?("rspec", ">= 2.0.0.beta.20")
+    run "gem install rspec -v '>= 2.0.0.beta.20' --no-rdoc --no-ri"
+    run "gem install rspec-rails -v '>= 2.0.0.beta.20' --no-rdoc --no-ri"
+  else
+    say("Found rspec gem, skipping installation", :cyan)
+    say("Found rspec-rails gems, skipping installation", :cyan)
+  end
 
-    unless Gem.available?("rspec", ">= 2.0.0.beta.20")
-      run "gem install rspec -v '>= 2.0.0.beta.20' --no-rdoc --no-ri"
-      run "gem install rspec-rails -v '>= 2.0.0.beta.20' --no-rdoc --no-ri"
-    else
-      say("Found rspec gem, skipping installation", Thor::Shell::Color::CYAN)
-      say("Found rspec-rails gems, skipping installation", Thor::Shell::Color::CYAN)
+  unless Gem.available?("database_cleaner")
+    run 'gem install database_cleaner --no-rdoc --no-ri'
+  else
+    say("Found database_cleaner, skipping installation", :cyan)
+  end
+
+  generate "rspec:install"
+
+  create_file ".rspec", File.binread("#{File.dirname(__FILE__)}/resources/.rspec"), :force => true
+
+  if yes?("Install mocha?", :yellow)
+    gem 'mocha', :group => :test
+
+    append_file "spec/spec_helper.rb" do
+      "Mocha::Configuration.warn_when(:stubbing_non_existent_method)\n" +
+      "Mocha::Configuration.warn_when(:stubbing_non_public_method)"
     end
 
-    generate "rspec:install"
-
-    # TODO: inject config.generators statement for rspec and factory_girl
+    gsub_file "spec/spec_helper.rb", /config\.mock_with :rspec/, "config.mock_with :mocha"
   end
 
-  if yes?("Use Factory Girl instead of fixtures?", Thor::Shell::Color::YELLOW)
-    gem 'factory_girl', '>= 1.3.2', :group => :test
+  append_file "spec/spec_helper.rb" do
+    "DatabaseCleaner.strategy = :truncation"
   end
 
-  if yes?("Use Mocha for mocking/stubbing?", Thor::Shell::Color::YELLOW)
-    gem 'mocha', :group => :test
-  end
+end
 
-  if yes?("Use Shoulda macros?", Thor::Shell::Color::YELLOW)
-    gem 'shoulda', :group => :test
-  end
+if yes?("Install factory_girl?", :yellow)
+  gem 'factory_girl', '>= 1.3.2', :group => :test
 
+  inject_into_file "config/application.rb", :after => "config.generators do |generator|\n" do
+    (" " * 6) + "generator.fixture_replacement :factory_girl, :dir => '#{@use_rspec ? "spec/factories" : "test/factories"}'\n"
+  end
 end
