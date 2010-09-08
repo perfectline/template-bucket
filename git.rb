@@ -1,20 +1,7 @@
 if yes?("Use Git?", :yellow)
 
-  create_file ".gitignore" do
-    "*.DS_Store\n" +
-    ".rvmrc\n" +
-    ".bundle\n" +
-    ".idea/*\n" +
-    "log/*\n" +
-    "tmp/*\n" +
-    "db/schema.rb\n" +
-    "db/*.sqlite3\n" +
-    "public/system\n" +
-    "coverage/*\n" +
-    "rerun.txt\n" +
-    "!.gitkeep\n"
-  end
-  
+  get "#{File.dirname(__FILE__)}/resources/.gitignore", ".gitignore"
+
   git :init
   git :add => "."
   git :commit => "-a -m '- initial commit'"

@@ -10,3 +10,6 @@ apply "#{@template_path}/layout.rb"
 apply "#{@template_path}/bootstrap.rb"
 apply "#{@template_path}/capistrano.rb"
 apply "#{@template_path}/git.rb"
+
+# TODO: resque
+# TODO: capistrano recipes
