@@ -55,6 +55,6 @@ if yes?("Use Cucumber behavior testing?", :yellow)
 
   generate "cucumber:install #{arguments.join(" ")}"
 
-  create_file "config/cucumber.yml", File.binread("#{File.dirname(__FILE__)}/resources/cucumber.yml"), :force => true
+  get "#{File.dirname(__FILE__)}/resources/cucumber.yml", "config/cucumber.yml", :force => true
 
 end

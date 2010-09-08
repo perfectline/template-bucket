@@ -28,7 +28,7 @@ if yes?("Install rspec and rspec-rails?", :yellow)
 
   generate "rspec:install"
 
-  create_file ".rspec", File.binread("#{File.dirname(__FILE__)}/resources/.rspec"), :force => true
+  get "#{File.dirname(__FILE__)}/resources.rspec", ".rspec", :force => true
 
   if yes?("Install mocha?", :yellow)
     gem 'mocha', :group => :test
