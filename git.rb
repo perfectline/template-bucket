@@ -8,29 +8,42 @@ if yes?("Use Git?", :yellow)
 
   if yes?("Initialize remote repository?", :yellow)
 
-    say("Choose repository location:", :yellow)
-    say("\t[1] http://www.github.com/perfectline")
-    say("\t[2] http://svn.perfectline.ee")
-    say("\t[3] http://git.code.perfectline.ee")
-    say("\t[4] other repository")
+    set_repository    = lambda { |repo| git :remote => "add origin #{repo}" unless repo.blank? }    
+    other_repository  = lambda { ask("Enter Git repository URI:", :yellow) }
+    repository_list   = File.expand_path("~/.template-bucket/repositories")
 
-    question    = lambda { ask("Enter number:", :yellow) }
-    repository  = question.call
+    if File.exists?(repository_list)
 
-    while !(1..4).include?(repository.to_i) do
-      say("Incorrect option", :red)
-      repository = question.call
-    end
+      options = File.readlines(repository_list)
 
-    case repository.to_i
-      when 1
-        git :remote => "add origin git@github.com:perfectline/#{app_name}.git"
-      when 2
-        git :remote => "add origin ssh://svn.perfectline.ee/home/dev/git/#{app_name}.git"
-      when 3
-        git :remote => "add origin ssh://git.code.perfectline.ee/#{app_name}.git"
-      when 4
-        git :remote => "add origin #{ask("Enter Git repository URI:", :yellow)}"
+      say("Choose repository location:", :yellow)
+
+      options.each_with_index do |repo, index|
+        say("\t[#{index + 1}] #{repo.gsub(/<app>/, app_name)}")
+      end
+
+      say("\t[#{options.length}] other repository")
+
+      question    = lambda { ask("Enter number:", :yellow) }
+      repository  = question.call
+
+      while !(1..(options.length - 1)).include?(repository.to_i) do
+        say("Incorrect option", :red)
+        repository = question.call
+      end
+
+      if repository_url = options[repository.to_i]
+        set_repository.call(repository_url.gsub(/<app>/, app_name))
+      else
+        set_repository.call(other_repository.call)
+      end
+
+    else
+      say("~/template-bucket/repositories was not found, skipping pre-defined list of repositories", :magenta)
+      say("You can configure your selection of repositories to ~/template-bucket/repositores to be used in this step", :magenta)
+      say("The format is one repository URL per line, where the <app> placeholder will be substituted with application name", :magenta)
+
+      set_repository.call(other_repository.call)
     end
 
   end
