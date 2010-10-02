@@ -1,6 +1,6 @@
 # Template Bucket
 
-Awesome Rails 3 project template, full of rainbows, ponies and unicors... and awesomeness.
+Awesome Rails 3 project template, full of rainbows, ponies and unicorns... and awesomeness.
 These templates are knowingly a bit opinionated, but feel free to leave feedback about what you would like to do differently.
 
 ### Usage
