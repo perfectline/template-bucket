@@ -22,6 +22,7 @@ end
 
 if yes?("Install haml?", :yellow)
   gem 'haml'
+  gem 'haml-rails'
 
   inject_into_file "config/application.rb", :after => "config.generators do |generator|\n" do
     (" " * 6) + "generator.template_engine :haml\n"
