@@ -42,7 +42,7 @@ if yes?("Install rspec and rspec-rails?", :yellow)
   end
 
   append_file "spec/spec_helper.rb" do
-    "DatabaseCleaner.strategy = :truncation"
+    "\nDatabaseCleaner.strategy = :truncation"
   end
 
 end
