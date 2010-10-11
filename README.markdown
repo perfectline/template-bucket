@@ -3,12 +3,18 @@
 Awesome Rails 3 project template, full of rainbows, ponies and unicorns... and awesomeness.
 These templates are knowingly a bit opinionated, but feel free to leave feedback about what you would like to do differently.
 
+### Prerequisites
+
+- [RVM](http://rvm.beginrescueend.com/)
+- Ruby 1.9.2 (installed via RVM) - `rvm install 1.9.2`
+- Rails 3 (installed in ruby-1.9.2 in RVM) - `rvm use 1.9.2; gem install rails`
+
 ### Usage
 
 The templates work both locally and remotely referenced.
 You can clone the repo and reference to it from your filesystem, or use the urls directly from github.
 
-The most basic usage would be `rails new appname -m http://github.com/perfectline/template-bucket/raw/master/full.rb`.
+The most basic usage would be `rails new appname -m http://github.com/perfectline/template-bucket/raw/master/full.rb`. 
 
 All of the subtemplates can also be used separately, so you can mix and match them according to your own taste.
 
