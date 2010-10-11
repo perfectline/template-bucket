@@ -8,6 +8,7 @@ These templates are knowingly a bit opinionated, but feel free to leave feedback
 - [RVM](http://rvm.beginrescueend.com/)
 - Ruby 1.9.2 (installed via RVM) - `rvm install 1.9.2`
 - Rails 3 (installed in ruby-1.9.2 in RVM) - `rvm use 1.9.2; gem install rails`
+- RVM gem - `gem install rvm` (but don't need to run `rvm-install` if RVM is installed using another method already)
 
 ### Usage
 
