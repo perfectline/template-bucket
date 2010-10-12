@@ -26,4 +26,6 @@ RVM.gemset_use! app_name
 # Now install the required gems in the new gemset
 unless Gem.available?("rails")
   run 'gem install rails --no-rdoc --no-ri'
+else
+  say("Found rails, skipping installation", :cyan)
 end
