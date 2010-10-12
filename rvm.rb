@@ -24,4 +24,6 @@ run "rvm 1.9.2@#{app_name}"
 RVM.gemset_use! app_name
 
 # Now install the required gems in the new gemset
-run 'gem install rails --no-rdoc --no-ri'
+unless Gem.available?("rails")
+  run 'gem install rails --no-rdoc --no-ri'
+end
