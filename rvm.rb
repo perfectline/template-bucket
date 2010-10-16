@@ -10,6 +10,8 @@
 #
 #     rvm use 1.9.2
 
+# TODO: check prerequisites
+
 require 'rvm'
 
 create_file ".rvmrc" do
