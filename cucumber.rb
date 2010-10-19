@@ -6,7 +6,7 @@ if yes?("Use Cucumber behavior testing?", :yellow)
   gem 'launchy',          :group => :test
 
   if yes?("Use Capybara instead of Webrat?", :yellow)
-    gem 'capybara',       :group => :Test
+    gem 'capybara',       :group => :test
 
     @use_capybara = true
   else
