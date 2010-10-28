@@ -25,11 +25,7 @@ cucumber:
   <<: *test"
 end
 
-unless Gem.available?(gem_for_database)
-  run "gem install #{gem_for_database} --no-rdoc --no-ri"
-else
-  say("Found #{gem_for_database}, skipping installation", :cyan)
-end
+install_if_unavailable(gem_for_database)
 
 inject_into_file "config/application.rb", :after => "config.generators do |generator|\n" do
   (" " * 6) + "generator.orm :active_record\n"

@@ -5,8 +5,8 @@
 # Note that you do not have to install RVM itself via the gem,
 # the gem just needs to be present so it can be used here.
 #
-# Note also that you MUST be using 1.9.2 already on the command 
-# line when generating your Rails app... 
+# Note also that you MUST be using 1.9.2 already on the command
+# line when generating your Rails app...
 #
 #     rvm use 1.9.2
 
@@ -14,9 +14,7 @@
 
 require 'rvm'
 
-create_file ".rvmrc" do
-  "rvm 1.9.2@#{app_name}"
-end
+create_file ".rvmrc", "rvm 1.9.2@#{app_name}"
 
 run "rvm rvmrc trust"
 
@@ -26,8 +24,4 @@ run "rvm 1.9.2@#{app_name}"
 RVM.gemset_use! app_name
 
 # Now install the required gems in the new gemset
-unless Gem.available?("rails")
-  run 'gem install rails --no-rdoc --no-ri'
-else
-  say("Found rails, skipping installation", :cyan)
-end
+install_if_unavailable("rails")
