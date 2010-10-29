@@ -10,11 +10,21 @@ if yes?("Install rspec and rspec-rails?", :yellow)
 
   gem 'rspec',        '>= 2.0.0', :group => :test
   gem 'rspec-rails',  '>= 2.0.0', :group => :test
-  gem 'database_cleaner',         :group => :test
+  gem 'database_cleaner',                 :group => :test
 
-  install_if_unavailable("rspec", ">= 2.0.0")
-  install_if_unavailable("rspec-rails", ">= 2.0.0")
-  install_if_unavailable("database_cleaner")
+  unless Gem.available?("rspec", ">= 2.0.0")
+    run "gem install rspec -v '>= 2.0.0' --no-rdoc --no-ri"
+    run "gem install rspec-rails -v '>= 2.0.0' --no-rdoc --no-ri"
+  else
+    say("Found rspec gem, skipping installation", :cyan)
+    say("Found rspec-rails gems, skipping installation", :cyan)
+  end
+
+  unless Gem.available?("database_cleaner")
+    run 'gem install database_cleaner --no-rdoc --no-ri'
+  else
+    say("Found database_cleaner, skipping installation", :cyan)
+  end
 
   generate "rspec:install"
 
