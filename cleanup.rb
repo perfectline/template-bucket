@@ -1,7 +1,6 @@
 remove_file "README"
 remove_file "doc/"
 remove_file "public/index.html"
-remove_file "public/favicon.ico"
 remove_file "public/images/rails.png"
 
 # cleanup gemfile, by removing all commented lines

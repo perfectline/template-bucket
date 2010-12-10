@@ -1,4 +1,13 @@
-get "#{File.dirname(__FILE__)}/resources/reset.css", "public/stylesheets/reset.css"
+if @use_haml
+  get "#{File.dirname(__FILE__)}/resources/reset.scss", "public/stylesheets/sass/reset.scss"
+
+  append_file ".gitignore" do
+    "public/stylesheets/*.css"
+  end
+
+else
+  get "#{File.dirname(__FILE__)}/resources/reset.css",  "public/stylesheets/reset.css"
+end
 
 inside "app/views/layouts" do
   remove_file "application.html.erb"

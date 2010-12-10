@@ -11,6 +11,12 @@
 #     rvm use 1.9.2
 
 # TODO: check prerequisites
+unless Gem.available?("rspec", ">= 2.0.0")
+  run "gem install rvm --no-rdoc --no-ri"
+
+  Gem.refresh
+  Gem.activate("rvm")
+end
 
 require 'rvm'
 
@@ -19,9 +25,9 @@ create_file ".rvmrc" do
 end
 
 run "rvm rvmrc trust"
-
-run "rvm use --create 1.9.2@#{app_name}"
+run "rvm use 1.9.2@#{app_name} --create"
 run "rvm 1.9.2@#{app_name}"
+run "rvm gemset load #{app_name}"
 
 RVM.gemset_use! app_name
 

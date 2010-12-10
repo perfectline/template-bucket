@@ -8,9 +8,9 @@ if yes?("Install rspec and rspec-rails?", :yellow)
     (" " * 6) + "generator.test_framework :rspec, :views => false\n"
   end
 
-  gem 'rspec',        '>= 2.0.0', :group => :test
-  gem 'rspec-rails',  '>= 2.0.0', :group => :test
-  gem 'database_cleaner',                 :group => :test
+  gem 'rspec',            '>= 2.0.0', :group => :test
+  gem 'rspec-rails',      '>= 2.0.0', :group => :test
+  gem 'database_cleaner',             :group => :test
 
   unless Gem.available?("rspec", ">= 2.0.0")
     run "gem install rspec -v '>= 2.0.0' --no-rdoc --no-ri"

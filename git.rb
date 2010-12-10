@@ -22,12 +22,12 @@ if yes?("Use Git?", :yellow)
         say("\t[#{index + 1}] #{repo.gsub(/<app>/, app_name)}")
       end
 
-      say("\t[#{options.length}] other repository")
+      say("\t[#{options.length + 1}] other repository")
 
       question    = lambda { ask("Enter number:", :yellow) }
       repository  = question.call
 
-      while !(1..(options.length - 1)).include?(repository.to_i) do
+      while !(1..(options.length + 1)).include?(repository.to_i) do
         say("Incorrect option", :red)
         repository = question.call
       end
