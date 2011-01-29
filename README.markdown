@@ -1,3 +1,6 @@
+# IMPORTANT NOTE #
+As of Rails 3.0.3 using application templates remotely over HTTPS is broken. This is caused by the internal templates code only handling URLs without HTTPS, everything else is treated as a local resource. The fix for this issue has been commited to the Rails master branch on November 27th 2010 and will probably be included in the next minor release. Until then you sadly have to clone template-bucket repository to your local machine in order to use it :'(
+
 # Template Bucket
 
 Awesome Rails 3 project template, full of rainbows, ponies and unicorns... and awesomeness.
