@@ -17,7 +17,7 @@ These templates are knowingly a bit opinionated, but feel free to leave feedback
 The templates work both locally and remotely referenced.
 You can clone the repo and reference to it from your filesystem, or use the urls directly from github.
 
-The most basic usage would be `rails new appname -m http://github.com/perfectline/template-bucket/raw/master/full.rb`. 
+The most basic usage would be `rails new appname -m https://github.com/perfectline/template-bucket/raw/master/full.rb`. 
 
 All of the subtemplates can also be used separately, so you can mix and match them according to your own taste.
 
