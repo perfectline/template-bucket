@@ -13,7 +13,7 @@ inside "app/views/layouts" do
   remove_file "application.html.erb"
 
   if @use_haml
-    get "#{File.dirname(__FILE__)}/resources/layout.html.haml", "application.html.haml"
+    get "#{File.dirname(__FILE__)}/resources/layout.haml", "application.haml"
 
     gsub_file "application.html.haml", /\/ insert javascript here\n/, "= include_javascripts :application\n" if @use_jammit.present?
     gsub_file "application.html.haml", /\/ insert javascript here\n/, "= javascript_include_tag :defaults\n" if @use_jammit.nil?
