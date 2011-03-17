@@ -1,5 +1,4 @@
-if yes?("Create database?", :yellow)
-  say("Installing all gems in order to run rake tasks...", :magenta)
+if yes?("Create database? (Needs all gems to be installed first)", :yellow)
   run 'bundle install'
   rake "db:create"
 end

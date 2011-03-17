@@ -31,6 +31,12 @@ else
   say("Found #{gem_for_database}, skipping installation", :cyan)
 end
 
+if options[:database] =~ /postgresql/
+  if yes?('Install silent-postgres gem?', :yellow)
+    gem 'silent-postgres', :group => :delevelopment
+  end
+end
+
 inject_into_file "config/application.rb", :after => "config.generators do |generator|\n" do
   (" " * 6) + "generator.orm :active_record\n"
 end
