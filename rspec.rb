@@ -51,4 +51,7 @@ if yes?("Install factory_girl?", :yellow)
   inject_into_file "config/application.rb", :after => "config.generators do |generator|\n" do
     (" " * 6) + "generator.fixture_replacement :factory_girl, :dir => '#{@use_rspec ? "spec/factories" : "test/factories"}'\n"
   end
+
+  # TODO: inject require 'factory_girl' into spec_helper if @user_rspec
+
 end
