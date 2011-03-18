@@ -6,7 +6,7 @@ inside "public/javascripts" do
   remove_file 'rails.js'
 
   get "https://github.com/rails/jquery-ujs/raw/master/src/rails.js", "rails.js"
-  get "http://code.jquery.com/jquery-1.4.2.min.js",                 "jquery/jquery.min.js"
+  get "http://code.jquery.com/jquery-1.5.1.min.js",                 "jquery/jquery.min.js"
   get "http://plugins.jquery.com/files/jquery.metadata.2.1.zip",    "jquery/jquery.metadata.zip"
 
   inside "jquery" do
