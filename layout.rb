@@ -15,11 +15,11 @@ inside "app/views/layouts" do
   if @use_haml
     get "#{File.dirname(__FILE__)}/resources/layout.haml", "application.haml"
 
-    gsub_file "application.html.haml", /\/ insert javascript here\n/, "= include_javascripts :application\n" if @use_jammit.present?
-    gsub_file "application.html.haml", /\/ insert javascript here\n/, "= javascript_include_tag :defaults\n" if @use_jammit.nil?
+    gsub_file "application.haml", /\/ insert javascript here\n/, "= include_javascripts :application\n" if @use_jammit.present?
+    gsub_file "application.haml", /\/ insert javascript here\n/, "= javascript_include_tag :defaults\n" if @use_jammit.nil?
 
-    gsub_file "application.html.haml", /\/ insert stylesheet here\n/, "= include_stylesheets :application\n"  if @use_jammit.present?
-    gsub_file "application.html.haml", /\/ insert stylesheet here\n/, "= stylesheet_link_tag 'reset'\n"       if @use_jammit.nil?
+    gsub_file "application.haml", /\/ insert stylesheet here\n/, "= include_stylesheets :application\n"  if @use_jammit.present?
+    gsub_file "application.haml", /\/ insert stylesheet here\n/, "= stylesheet_link_tag 'reset'\n"       if @use_jammit.nil?
   else
     get "#{File.dirname(__FILE__)}/resources/layout.html.erb", "application.html.erb"
 
